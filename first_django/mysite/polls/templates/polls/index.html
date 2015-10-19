@@ -1,0 +1,38 @@
+{% load staticfiles %}
+
+<head>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Polls</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'polls/bootstrap.min.css' %}" />
+    <script src="{% static 'polls/jquery-2.1.4.min.js' %}"></script>
+    <script src="{% static 'polls/bootstrap.min.js' %}"></script>
+</head>
+
+<body>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="jumbotron" style="background-color:steelblue; color: white">
+				<h2>CoWhite Polls Appplication</h2>
+			</div>
+		</div>
+		{% if latest_question_list %}
+		    <div class="list-group">
+		    {% for question in latest_question_list %}
+		        <a href="{%url 'polls:detail' question.id %}" class="list-group-item" style="background-color:#91FF6C">{{ question.question_text }}</a>
+		    {% endfor %}
+		    </div>
+		{% else %}
+		    <p>No polls are available.</p>
+		{% endif %}
+		
+		<footer class="footer" style="width:100%; margin-left:-15px">
+			<div class="container-fluid">	
+					<p>Copyright &copy by Prashant 2015</p>
+			</div>	
+		</footer>
+		
+	</div>
+</body>
